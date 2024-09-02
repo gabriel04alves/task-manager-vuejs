@@ -2,3 +2,6 @@
 * {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
+::-webkit-scrollbar {
+  display: none;
+}

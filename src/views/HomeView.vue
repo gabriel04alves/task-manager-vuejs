@@ -1,7 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Form from '@/components/FormComponent.vue'
+import Task from '@/components/TaskComponent.vue'
+</script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Form />
+    <div>
+      <Task />
+      <Task />
+    </div>
   </main>
 </template>

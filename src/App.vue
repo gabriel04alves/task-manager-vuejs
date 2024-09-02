@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import MenuComponent from './components/MenuComponent.vue'
 </script>
 
@@ -8,8 +8,9 @@ import MenuComponent from './components/MenuComponent.vue'
     <div class="column is-one-quarter">
       <MenuComponent />
     </div>
-
-    <RouterView />
+    <div class="column is-three-querter">
+      <RouterView />
+    </div>
   </main>
 </template>
 
