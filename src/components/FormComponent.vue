@@ -17,6 +17,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Stopwatch from './StopwatchComponent.vue'
+import type TaskI from '@/interfaces/TaskI'
 
 export default defineComponent({
   name: 'FormComponent',
@@ -26,15 +27,23 @@ export default defineComponent({
   },
   data() {
     return {
-      description: ''
+      description: '',
+      tasks: [] as TaskI[]
     }
   },
   methods: {
     finishTask(elapsedTime: number) {
-      this.$emit('saveTask', {
+      const defaultDescription = 'Tarefa sem descrição...'
+
+      const taskDescription = this.description.trim() || defaultDescription
+
+      const newTask = {
+        id: Date.now(),
         timeInSeconds: elapsedTime,
-        description: this.description
-      })
+        description: taskDescription
+      }
+      this.tasks.push(newTask)
+      this.$emit('saveTask', newTask)
       this.description = ''
     }
   }
