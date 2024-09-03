@@ -1,8 +1,8 @@
 <template>
   <div class="box has-text-weight-light">
-    <div class="columns">
-      <div class="column is-7">• Tarefa XYZ</div>
-      <div class="column"><Timer /></div>
+    <div class="columns is-flex is-align-items-center">
+      <div class="column is-7">• {{ task.description || 'Ainda não há nada por aqui' }}</div>
+      <div class="column"><Timer :timeInSeconds="task.timeInSeconds" /></div>
       <button class="button has-text-danger is-ghost is-outlined">
         <span class="icon is-small">
           <i class="fas fa-trash"></i>
@@ -12,8 +12,24 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import Timer from './TimerComponent.vue'
+import type { PropType } from 'vue'
+import type TaskI from '../interfaces/TaskI'
+
+export default defineComponent({
+  name: 'TaskComponent',
+  components: {
+    Timer
+  },
+  props: {
+    task: {
+      type: Object as PropType<TaskI>,
+      required: true
+    }
+  }
+})
 </script>
 
 <style scoped>

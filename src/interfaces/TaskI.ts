@@ -1,0 +1,4 @@
+export default interface TaskI {
+  timeInSeconds: number
+  description: string
+}

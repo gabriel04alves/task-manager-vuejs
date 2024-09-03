@@ -62,8 +62,8 @@ export default defineComponent({
     },
     finish() {
       this.timerStatus = 'stopped'
+      this.$emit('finishedTimer', this.timeInSeconds)
       clearInterval(this.timer)
-      this.$emit('finishedTimer', this.timeInSeconds && console.log('tarefa finalizada'))
       this.timeInSeconds = 0
     }
   }
