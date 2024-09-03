@@ -2,7 +2,7 @@
   <div class="main">
     <div class="columns is-flex is-align-items-center">
       <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
-        <input type="text" class="input" placeholder="O que você fazer agora?" />
+        <input type="text" class="input is-size-5" placeholder="O que você vai fazer agora?" />
       </div>
       <div class="column"><Stopwatch /></div>
     </div>
