@@ -1,45 +1,67 @@
 <template>
   <TemplateWithMenu>
-    <div class="column is-half is-offset-one-quarter">
-      <h2 class="title is-3 has-text-centered">Login</h2>
-      <form @submit.prevent="login">
+    <main class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+      <h1 class="title has-text-centered is-uppercase has-text-weight-normal">
+        Bem vindo ao <b>Task Manager</b>
+      </h1>
+      <h2 class="subtitle mt-5">Fazer login:</h2>
+      <form class="box" @submit.prevent="login">
         <div class="field">
+          <label class="label">Email</label>
           <div class="control">
-            <input v-model="email" class="input" type="email" placeholder="Email" required />
+            <input
+              v-model="email"
+              class="input"
+              type="email"
+              placeholder="typescript@example.com"
+              required
+            />
           </div>
         </div>
+
         <div class="field">
+          <label class="label">Senha</label>
           <div class="control">
             <input
               v-model="password"
               class="input"
               type="password"
-              placeholder="Password"
+              placeholder="********"
               required
             />
           </div>
         </div>
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary is-fullwidth">Entrar</button>
+
+        <div class="is-flex is-justify-content-space-between mt-6">
+          <div class="is-flex columns is-1">
+            <div class="field column">
+              <div class="control">
+                <button class="button is-outlined is-success">Fazer login</button>
+              </div>
+            </div>
+            <div class="field column">
+              <div class="control">
+                <button
+                  @click="signInWithGoogle"
+                  class="button is-outlined is-danger"
+                  type="button"
+                >
+                  <span class="icon">
+                    <i class="fab fa-google"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <RouterLink to="/register" class="button is-info is-outlined"
+              >Criar uma conta</RouterLink
+            >
           </div>
         </div>
+        <p v-if="errMsg">{{ errMsg }}</p>
       </form>
-
-      <div class="field">
-        <div class="control">
-          <button @click="signInWithGoogle" class="button is-danger is-fullwidth" type="button">
-            <span class="icon">
-              <i class="fab fa-google"></i>
-            </span>
-            <span>Acessar com Google</span>
-          </button>
-        </div>
-      </div>
-
-      <router-link to="/register" class="button is-primary is-large"> Cadastrar </router-link>
-      <p v-if="errMsg">{{ errMsg }}</p>
-    </div>
+    </main>
   </TemplateWithMenu>
 </template>
 
@@ -98,3 +120,12 @@ const signInWithGoogle = () => {
     })
 }
 </script>
+
+<style scoped>
+main {
+  height: 100%;
+}
+form {
+  width: 40vw;
+}
+</style>

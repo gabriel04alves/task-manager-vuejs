@@ -1,42 +1,63 @@
 <template>
   <TemplateWithMenu>
-    <div class="column is-half is-offset-one-quarter">
-      <h2 class="title is-3 has-text-centered">Registro</h2>
-      <form @submit.prevent="register">
+    <main class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+      <h1 class="title has-text-centered is-uppercase has-text-weight-normal">Registro</h1>
+      <h2 class="subtitle mt-5">Crie sua conta:</h2>
+      <form class="box" @submit.prevent="register">
         <div class="field">
+          <label class="label">Email</label>
           <div class="control">
-            <input v-model="email" class="input" type="email" placeholder="Email" required />
+            <input
+              v-model="email"
+              class="input"
+              type="email"
+              placeholder="email@example.com"
+              required
+            />
           </div>
         </div>
+
         <div class="field">
+          <label class="label">Senha</label>
           <div class="control">
             <input
               v-model="password"
               class="input"
               type="password"
-              placeholder="Password"
+              placeholder="********"
               required
             />
           </div>
         </div>
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary is-fullwidth">Registrar</button>
+
+        <div class="is-flex is-justify-content-space-between mt-6">
+          <div class="is-flex columns is-1">
+            <div class="field column">
+              <div class="control">
+                <button class="button is-outlined is-success">Registrar</button>
+              </div>
+            </div>
+            <div class="field column">
+              <div class="control">
+                <button
+                  @click="signInWithGoogle"
+                  class="button is-outlined is-danger"
+                  type="button"
+                >
+                  <span class="icon">
+                    <i class="fab fa-google"></i>
+                  </span>
+                  <span>Use o Google</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <RouterLink to="/" class="button is-info is-outlined">Já tenho uma conta</RouterLink>
           </div>
         </div>
       </form>
-
-      <div class="field">
-        <div class="control">
-          <button @click="signInWithGoogle" class="button is-danger is-fullwidth" type="button">
-            <span class="icon">
-              <i class="fab fa-google"></i>
-            </span>
-            <span>Acessar com Google</span>
-          </button>
-        </div>
-      </div>
-    </div>
+    </main>
   </TemplateWithMenu>
 </template>
 
@@ -81,3 +102,12 @@ const signInWithGoogle = () => {
     })
 }
 </script>
+
+<style scoped>
+main {
+  height: 100%;
+}
+form {
+  width: 40vw;
+}
+</style>

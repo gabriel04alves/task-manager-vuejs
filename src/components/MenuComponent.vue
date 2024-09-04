@@ -10,9 +10,15 @@
       />
     </div>
     <div class="btns is-flex is-justify-content-space-between is-uppercase">
+      <div v-if="isLoggedIn" class="btn has-text-primary-light">
+        <span class="icon">
+          <i class="fa-solid fa-user"></i>
+        </span>
+        <span> {{ userName || userEmail }} </span>
+      </div>
       <button
         v-if="conditionElement"
-        class="btn button is-ghost has-text-primary-light"
+        class="btn button is-ghost has-text-primary-light is-uppercase"
         @click="goBack"
       >
         <span class="icon">
@@ -52,17 +58,23 @@ const route = useRoute()
 const isLoggedIn = ref(false)
 
 const conditionElement = computed(() => {
-  return route.path === '/about'
+  return route.path === '/about' || route.path === '/register'
 })
 
 let auth: Auth
+const userName = ref<string | null>(null)
+const userEmail = ref<string | null>(null)
+
 onMounted(() => {
   auth = getAuth()
   onAuthStateChanged(auth, (user) => {
     if (user) {
       isLoggedIn.value = true
+      userName.value = user.displayName
+      userEmail.value = user.email ? user.email.split('@')[0] : null
     } else {
       isLoggedIn.value = false
+      userName.value = null
     }
   })
 })
