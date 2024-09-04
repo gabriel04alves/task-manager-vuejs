@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 const router = createRouter({
@@ -7,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'sign-in',
+      component: () => import('../views/SignInView.vue')
     },
     {
       path: '/app',
@@ -27,11 +26,6 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: () => import('../views/RegisterView.vue')
-    },
-    {
-      path: '/sign-in',
-      name: 'sign-in',
-      component: () => import('../views/SignInView.vue')
     }
   ]
 })
@@ -55,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
       next()
     } else {
       alert('Acesso negado')
-      next('/sign-in')
+      next('/')
     }
   } else {
     next()

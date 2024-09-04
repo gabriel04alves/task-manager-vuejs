@@ -3,19 +3,23 @@
     class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between"
   >
     <div class="mt-6">
-      <img class="is-rounded" src="../assets/images/logo.webp" alt="" />
+      <img
+        class="is-rounded"
+        src="https://raw.githubusercontent.com/gabriel04alves/task-manager-vuejs3/main/src/assets/images/logo.webp?token=GHSAT0AAAAAACWQNOMZGX356MBIDDUFORMUZWY44SQ"
+        alt=""
+      />
     </div>
     <div class="btns is-flex is-justify-content-space-between is-uppercase">
-      <RouterLink
-        v-if="shouldShowComponent"
+      <button
+        v-if="conditionElement"
         class="btn button is-ghost has-text-primary-light"
-        to="/app"
+        @click="goBack"
       >
         <span class="icon">
-          <i class="fa-solid fa-list"></i>
+          <i class="fa-solid fa-caret-left"></i>
         </span>
-        <span> Task Manager </span>
-      </RouterLink>
+        <span> Voltar </span>
+      </button>
       <RouterLink class="btn button is-ghost has-text-primary-light" to="/about">
         <span class="icon">
           <i class="fa-solid fa-circle-info"></i>
@@ -47,6 +51,10 @@ const route = useRoute()
 
 const isLoggedIn = ref(false)
 
+const conditionElement = computed(() => {
+  return route.path === '/about'
+})
+
 let auth: Auth
 onMounted(() => {
   auth = getAuth()
@@ -65,9 +73,9 @@ const handleSignOut = () => {
   })
 }
 
-const shouldShowComponent = computed(() => {
-  return !isLoggedIn.value || route.path === '/about'
-})
+const goBack = () => {
+  router.go(-1)
+}
 </script>
 
 <style scoped>

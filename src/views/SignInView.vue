@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <TemplateWithMenu>
     <div class="column is-half is-offset-one-quarter">
       <h2 class="title is-3 has-text-centered">Login</h2>
       <form @submit.prevent="login">
@@ -36,9 +36,11 @@
           </button>
         </div>
       </div>
+
+      <router-link to="/register" class="button is-primary is-large"> Cadastrar </router-link>
       <p v-if="errMsg">{{ errMsg }}</p>
     </div>
-  </div>
+  </TemplateWithMenu>
 </template>
 
 <script setup lang="ts">
@@ -51,6 +53,7 @@ import {
 } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 import { auth } from '@/firebase'
+import TemplateWithMenu from './templates/TemplateWithMenu.vue'
 
 const email = ref('')
 const password = ref('')

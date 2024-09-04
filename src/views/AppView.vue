@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <TemplateWithMenu>
     <Form @saveTask="addTask" />
     <div v-if="tasks.length">
       <Task v-for="task in tasks" :key="task.id" :task="task" @delete="handleDelete" />
@@ -21,7 +21,7 @@
         >
       </p>
     </div>
-  </main>
+  </TemplateWithMenu>
 </template>
 
 <script setup lang="ts">
@@ -29,6 +29,7 @@ import { ref } from 'vue'
 import Form from '@/components/FormComponent.vue'
 import Task from '@/components/TaskComponent.vue'
 import type TaskI from '@/interfaces/TaskI'
+import TemplateWithMenu from './templates/TemplateWithMenu.vue'
 
 const tasks = ref<TaskI[]>([])
 
