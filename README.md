@@ -39,6 +39,8 @@ O Task Manager é uma aplicação de gerenciamento de tarefas desenvolvida com V
 
   - `services/`: Serviços para lógica de negócios, como interações com o Firebase.
 
+  - `utils/`: Funções utilitárias e auxiliares.
+
   - `views/`: Componentes Vue que representam páginas ou visualizações completas.
 
   - `App.vue`: Componente raiz da aplicação.

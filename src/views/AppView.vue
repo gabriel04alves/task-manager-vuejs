@@ -2,35 +2,21 @@
   <TemplateWithMenu>
     <Form @saveTask="addTask" />
     <div v-if="tasks.length">
-      <Task
-        v-for="(task, index) in tasks"
-        :key="task.id ?? index"
-        :task="task"
-        @delete="handleDelete"
-      />
+      <div v-for="(group, date) in groupedTasks" :key="date">
+        <h2 class="has-text-weight-normal ml-5">{{ formatDate(date) }}:</h2>
+        <Task v-for="task in group" :key="task.id" :task="task" @delete="handleDelete(task.id!)" />
+
+        <hr class="m-6" />
+      </div>
     </div>
     <div v-else class="is-flex is-flex-direction-column is-align-items-center mt-6">
       <p class="is-size-5 has-text-centered">Nenhuma tarefa feita por enquanto...</p>
-      <iframe
-        src="https://giphy.com/embed/2YoREgUddKzMuBuaVd"
-        width="240"
-        height="240"
-        style=""
-        frameBorder="0"
-        class="giphy-embed mt-6"
-        allowFullScreen
-      ></iframe>
-      <p>
-        <a href="https://giphy.com/gifs/evite-basketball-college-hoops-2YoREgUddKzMuBuaVd"
-          >via GIPHY</a
-        >
-      </p>
     </div>
   </TemplateWithMenu>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import Form from '@/components/FormComponent.vue'
 import Task from '@/components/TaskComponent.vue'
 import TemplateWithMenu from './templates/TemplateWithMenu.vue'
@@ -40,6 +26,7 @@ import {
   fetchTasksForUser
 } from '@/services/taskService'
 import type TaskI from '@/interfaces/TaskI'
+import { formatDate } from '@/utils/dateFormatter'
 
 const tasks = ref<TaskI[]>([])
 
@@ -47,10 +34,26 @@ onMounted(async () => {
   tasks.value = await fetchTasksForUser()
 })
 
+const groupedTasks = computed(() => {
+  return tasks.value.reduce(
+    (groups, task) => {
+      if (task.createdAt) {
+        const date = new Date(task.createdAt).toISOString().split('T')[0]
+        if (!groups[date]) {
+          groups[date] = []
+        }
+        groups[date].push(task)
+      }
+      return groups
+    },
+    {} as Record<string, TaskI[]>
+  )
+})
+
 async function addTask(newTask: TaskI) {
   const taskId = await addTaskToFirestore(newTask)
   if (taskId) {
-    tasks.value.push({ ...newTask, id: taskId })
+    tasks.value.push({ ...newTask, id: taskId, createdAt: new Date() })
   }
 }
 
@@ -59,15 +62,3 @@ async function handleDelete(taskId: string) {
   tasks.value = tasks.value.filter((task) => task.id !== taskId)
 }
 </script>
-
-<style>
-iframe,
-a {
-  display: none;
-}
-@media only screen and (max-width: 768px) {
-  iframe {
-    display: flex;
-  }
-}
-</style>

@@ -38,9 +38,9 @@ export default defineComponent({
       const taskDescription = this.description.trim() || defaultDescription
 
       const newTask: TaskI = {
-        id: '',
         timeInSeconds: elapsedTime,
-        description: taskDescription
+        description: taskDescription,
+        createdAt: new Date()
       }
       this.$emit('saveTask', newTask)
       this.description = ''
