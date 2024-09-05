@@ -94,7 +94,7 @@ header {
   height: 100vh;
 }
 img {
-  width: 20vh;
+  width: 26vh;
 }
 
 .btns {
