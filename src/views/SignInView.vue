@@ -1,12 +1,15 @@
 <template>
   <TemplateWithMenu>
     <main class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
-      <h1 class="title has-text-centered is-uppercase has-text-weight-normal">
-        Bem vindo ao <b>Task Manager</b>
+      <h1 class="title has-text-centered is-uppercase has-text-weight-normal mt-6">
+        <p>Bem vindo ao</p>
+        <RouterLink to="/about">
+          <b>Task Manager</b>
+        </RouterLink>
       </h1>
       <h2 class="subtitle mt-5">Fazer login:</h2>
       <form class="box" @submit.prevent="login">
-        <div class="field">
+        <div class="field mt-4">
           <label class="label">Email</label>
           <div class="control">
             <input
@@ -32,7 +35,7 @@
           </div>
         </div>
 
-        <div class="is-flex is-justify-content-space-between mt-6">
+        <div class="btns is-flex is-justify-content-space-between mt-6">
           <div class="is-flex columns is-1">
             <div class="field column">
               <div class="control">
@@ -54,8 +57,11 @@
             </div>
           </div>
           <div>
-            <RouterLink to="/register" class="button is-info is-outlined"
+            <RouterLink to="/register" class="button btn-default is-info is-outlined"
               >Criar uma conta</RouterLink
+            >
+            <RouterLink to="/register" class="button btn-mobile is-info is-outlined"
+              >SignUp</RouterLink
             >
           </div>
         </div>
@@ -127,5 +133,26 @@ main {
 }
 form {
   width: 40vw;
+}
+.btn-mobile {
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  form {
+    width: 95%;
+    padding: 0 8vw;
+  }
+  .btns {
+    gap: 2vw;
+  }
+  .title {
+    font-size: x-large;
+  }
+  .btn-default {
+    display: none;
+  }
+  .btn-mobile {
+    display: block;
+  }
 }
 </style>

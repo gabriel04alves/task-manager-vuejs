@@ -3,11 +3,7 @@
     class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between"
   >
     <div class="mt-6">
-      <img
-        class="is-rounded"
-        src="https://raw.githubusercontent.com/gabriel04alves/task-manager-vuejs3/main/src/assets/images/logo.webp?token=GHSAT0AAAAAACWQNOMZGX356MBIDDUFORMUZWY44SQ"
-        alt=""
-      />
+      <img class="is-rounded" src="@/assets/images/logo.webp" alt="" />
     </div>
     <div class="btns is-flex is-justify-content-space-between is-uppercase">
       <div v-if="isLoggedIn" class="btn has-text-primary-light">
@@ -26,7 +22,7 @@
         </span>
         <span> Voltar </span>
       </button>
-      <RouterLink class="btn button is-ghost has-text-primary-light" to="/about">
+      <RouterLink class="btn about button is-ghost has-text-primary-light" to="/about">
         <span class="icon">
           <i class="fa-solid fa-circle-info"></i>
         </span>
@@ -125,6 +121,9 @@ img {
     display: none;
   }
   i {
+    display: none;
+  }
+  .about {
     display: none;
   }
 }
