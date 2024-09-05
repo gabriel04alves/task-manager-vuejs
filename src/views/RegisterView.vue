@@ -69,7 +69,7 @@
 import { ref } from 'vue'
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { useRouter } from 'vue-router'
-import { auth } from '@/firebase'
+import { auth } from '@/firebase/firebase'
 import TemplateWithMenu from './templates/TemplateWithMenu.vue'
 
 const email = ref('')

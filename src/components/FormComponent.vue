@@ -32,17 +32,16 @@ export default defineComponent({
     }
   },
   methods: {
-    finishTask(elapsedTime: number) {
+    async finishTask(elapsedTime: number) {
       const defaultDescription = 'Tarefa sem descrição...'
 
       const taskDescription = this.description.trim() || defaultDescription
 
-      const newTask = {
-        id: Date.now(),
+      const newTask: TaskI = {
+        id: '',
         timeInSeconds: elapsedTime,
         description: taskDescription
       }
-      this.tasks.push(newTask)
       this.$emit('saveTask', newTask)
       this.description = ''
     }
