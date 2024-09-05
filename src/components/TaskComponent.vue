@@ -1,7 +1,7 @@
 <template>
   <div class="box has-text-weight-light">
     <div class="columns is-flex is-align-items-center">
-      <div class="column is-7">• {{ task.description }}</div>
+      <p class="column is-7 has-text-left description">• {{ task.description }}</p>
       <div class="column"><Timer :timeInSeconds="task.timeInSeconds" /></div>
       <button class="button has-text-danger is-ghost is-outlined" @click="deleteTask">
         <span class="icon is-small">
@@ -44,6 +44,10 @@ export default defineComponent({
 }
 button {
   margin: 0 3vw;
+}
+.description {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 @media only screen and (max-width: 768px) {
   .columns {

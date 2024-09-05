@@ -1,17 +1,27 @@
 <template>
-  <header
-    class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between"
-  >
+  <header class="is-flex is-flex-direction-column is-align-items-center">
     <div class="mt-6">
       <img class="is-rounded" src="@/assets/images/logo.webp" alt="" />
     </div>
-    <div class="btns is-flex is-justify-content-space-between is-uppercase">
+    <div
+      class="btns is-flex is-flex-direction-column is-justify-content-center is-uppercase is-flex-wrap-wrap mt-5"
+    >
       <div v-if="isLoggedIn" class="btn has-text-primary-light">
         <span class="icon">
           <i class="fa-solid fa-user"></i>
         </span>
         <span> {{ userName || userEmail }} </span>
       </div>
+      <RouterLink
+        v-if="route.path !== '/about'"
+        class="btn about button is-ghost has-text-info"
+        to="/about"
+      >
+        <span class="icon">
+          <i class="fa-solid fa-circle-info"></i>
+        </span>
+        <span> Sobre </span>
+      </RouterLink>
       <button
         v-if="conditionElement"
         class="btn button is-ghost has-text-primary-light is-uppercase"
@@ -22,17 +32,7 @@
         </span>
         <span> Voltar </span>
       </button>
-      <RouterLink class="btn about button is-ghost has-text-primary-light" to="/about">
-        <span class="icon">
-          <i class="fa-solid fa-circle-info"></i>
-        </span>
-        <span> Sobre </span>
-      </RouterLink>
-      <button
-        v-if="isLoggedIn"
-        @click="handleSignOut"
-        class="btn button is-ghost has-text-primary-light"
-      >
+      <button v-if="isLoggedIn" @click="handleSignOut" class="btn button is-ghost has-text-danger">
         <span class="icon">
           <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </span>
@@ -91,14 +91,15 @@ header {
   background: #0d3b66;
   padding: 2rem;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 img {
   width: 26vh;
 }
 
 .btns {
-  gap: 3vh;
+  gap: 1vh;
 }
 
 .btn {
@@ -116,6 +117,7 @@ img {
     height: auto;
     margin-bottom: 1vh;
     padding: 1vh;
+    min-height: 0;
   }
   img {
     display: none;

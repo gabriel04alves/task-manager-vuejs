@@ -44,15 +44,24 @@ const getCurrentUser = () => {
 }
 
 router.beforeEach(async (to, from, next) => {
+  const user = await getCurrentUser()
+
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (await getCurrentUser()) {
-      next()
+    if (user) {
+      if (to.name === 'sign-in' || to.name === 'register') {
+        next('/app')
+      } else {
+        next()
+      }
     } else {
-      alert('Acesso negado')
       next('/')
     }
   } else {
-    next()
+    if (user && (to.name === 'sign-in' || to.name === 'register')) {
+      next('/app')
+    } else {
+      next()
+    }
   }
 })
 
