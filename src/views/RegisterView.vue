@@ -1,6 +1,11 @@
 <template>
   <TemplateWithMenu>
-    <main class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+    <main
+      class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center"
+      data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="1500"
+    >
       <h1 class="is-size-4 has-text-centered is-uppercase has-text-weight-normal mt-6">
         <p>Registro</p>
       </h1>

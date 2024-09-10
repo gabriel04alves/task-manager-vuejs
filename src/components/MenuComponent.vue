@@ -1,10 +1,12 @@
 <template>
   <header class="is-flex is-flex-direction-column is-align-items-center">
-    <div class="mt-6">
+    <div class="mt-6" data-aos="zoom-in" data-aos-duration="2000">
       <img class="is-rounded" src="@/assets/images/logo.webp" alt="" />
     </div>
     <div
       class="btns is-flex is-flex-direction-column is-justify-content-center is-uppercase is-flex-wrap-wrap mt-5"
+      data-aos="fade-right"
+      data-aos-duration="2000"
     >
       <div v-if="isLoggedIn" class="btn has-text-primary-light">
         <span class="icon">
@@ -54,7 +56,7 @@ const route = useRoute()
 const isLoggedIn = ref(false)
 
 const conditionElement = computed(() => {
-  return route.path === '/about' || route.path === '/register'
+  return route.path === '/about'
 })
 
 let auth: Auth

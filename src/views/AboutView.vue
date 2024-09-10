@@ -1,9 +1,13 @@
 <template>
   <TemplateWithMenu class="about">
     <section class="section">
-      <div class="container">
+      <div
+        class="container"
+        data-aos="fade-right"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+      >
         <h1 class="title">Sobre o Projeto</h1>
-
         <div class="content">
           <p>
             - O <strong>Task Manager</strong> é uma aplicação desenvolvida para ajudar na gestão de

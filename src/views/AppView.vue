@@ -1,10 +1,16 @@
 <template>
   <TemplateWithMenu>
-    <Form @saveTask="addTask" />
+    <Form @saveTask="addTask" data-aos="zoom-in" />
     <div v-if="tasks.length">
       <div v-for="(group, date) in groupedTasks" :key="date">
         <h2 class="has-text-weight-normal ml-5">{{ formatDate(date) }}:</h2>
-        <Task v-for="task in group" :key="task.id" :task="task" @delete="handleDelete(task.id!)" />
+        <Task
+          v-for="task in group"
+          :key="task.id"
+          :task="task"
+          @delete="handleDelete(task.id!)"
+          data-aos="fade-down"
+        />
 
         <hr class="m-6" />
       </div>

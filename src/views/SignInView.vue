@@ -1,6 +1,11 @@
 <template>
   <TemplateWithMenu>
-    <main class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+    <main
+      class="is-flex is-flex-direction-column is-align-items-center is-justify-content-center"
+      data-aos="flip-right"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="1500"
+    >
       <h1 class="title has-text-centered is-uppercase has-text-weight-normal mt-6">
         <p>Bem vindo ao</p>
         <RouterLink to="/about">
