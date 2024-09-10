@@ -35,7 +35,7 @@ onMounted(async () => {
 })
 
 const groupedTasks = computed(() => {
-  return tasks.value.reduce(
+  const groups = tasks.value.reduce(
     (groups, task) => {
       if (task.createdAt) {
         const date = new Date(task.createdAt).toISOString().split('T')[0]
@@ -48,6 +48,18 @@ const groupedTasks = computed(() => {
     },
     {} as Record<string, TaskI[]>
   )
+
+  const sortedGroups = Object.keys(groups)
+    .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+    .reduce(
+      (sorted, date) => {
+        sorted[date] = groups[date]
+        return sorted
+      },
+      {} as Record<string, TaskI[]>
+    )
+
+  return sortedGroups
 })
 
 async function addTask(newTask: TaskI) {
